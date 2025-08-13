@@ -12,7 +12,7 @@ async function getAllRecords() {
   };
 
   await fetch(
-    `https://api.airtable.com/v0/appUjc6D3Y0L4AvTo/bayarea`,
+    `https://api.airtable.com/v0/appUjc6D3Y0L4AvTo/sanfrancisco`,
     options
   )
     .then((response) => response.json())
