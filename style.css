@@ -26,5 +26,17 @@ height: 20rem;
 }
 
 .container-fluid {
-  padding-top: 5px; /* Adjust this value based on your navbar height */
+  padding-top: 15px; /* Adjust this value based on your navbar height */
+}
+
+img {
+max-width: 100%;
+max-height: 100%;
+}
+
+.card {
+border: 30px solid #ccc;
+display: flex;
+justify-content: center; /* Centers horizontally */
+align-items: center; /* Centers vertically */
 }
