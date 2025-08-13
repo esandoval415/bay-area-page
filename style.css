@@ -2,8 +2,9 @@
 background-image: url('background.jpg')
 }
 
-
-
+body {
+  padding-top: 5px; /* Adjust this value based on your navbar height */
+}
 
 
 .text-center { 
@@ -24,4 +25,6 @@ width: 24rem;
 height: 20rem;
 }
 
- 
+.container-fluid {
+  padding-top: 5px; /* Adjust this value based on your navbar height */
+}
