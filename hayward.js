@@ -31,15 +31,15 @@ async function getAllRecords() {
         newHtml += `
         
          <div class="col-xl-4 cardImageText">
-        <div class="card">
-  <a href="index.html?id=${data.records[i].id}">${
+        <div class="card list">
+  <a href="hayward.html?id=${data.records[i].id}">${
           image
             ? `<img class="card-img-top rounded" alt="${name}" src="${image[0].url}">`
             : ``
         }
           </a>
-  <div class="card-body">
-    <p class="card-text">${name}</p>
+  <div class="card-places">
+    <p class="card-titulo">${name}</p>
   </div>
 </div>
           <p hidden class="card-key">${city}</p>
@@ -66,7 +66,7 @@ async function getOneRecord(id) {
   };
 
   await fetch(
-    `https://api.airtable.com/v0/appUjc6D3Y0L4AvTo/bayarea/${id}`,
+    `https://api.airtable.com/v0/appUjc6D3Y0L4AvTo/hayward/${id}`,
     options
   )
     .then((response) => response.json())
@@ -81,84 +81,27 @@ async function getOneRecord(id) {
       let city = data.fields["City"];
 
       let newHtml = `
-        <div class="card list mb-3">
+       <div class="card mb-3 attraction-card">
   <div class="row g-0">
-    <div class="col-md-4 d-flex justify-content-center align-items-center">
+    <div class="col-md-4">
      ${
-       logo
-         ? `<img class="img-fluid back ms-4" alt="${name}" src="${logo[0].url}">`
+       image
+         ? `<img class="img-fluid rounded-start" alt="${name}" src="${image[0].url}">`
          : ``
      }
     </div>
-    <div class="col-md-6 d-flex justify-content-center align-items-center desc">
+    <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title bar">${name}</h5>
-        <p class="card-text">${description}</p>
-        <p class="card-text"><small>${stars(rating)} (${rating})</small></p>
-        <p class="card-text"><small>${address} <br> SF, CA ${zip}</small></p>
-        <a href="${map}" target="_blank"><button type="button" class="btn btn-primary btn-sm">Get Directions</button></a>
+        <h5 class="card-title">${name}</h5>
+        <a href="${address}" target="_blank" class="btn btn-primary">Address</a>
+        <a href="${site}" target="_blank" class="btn btn-primary">Main Site</a>
+        <a href="${reviews}" target="_blank" class="btn btn-primary">Reviews</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="card list mb-3">
-  <div class="row g-0">
-    <div class="col-md-4 d-flex justify-content-center ">
-    ${
-      picture
-        ? `<img class="img-fluid front" alt="${name}" src="${picture[0].url}">`
-        : ``
-    }
-       </div>
-       <div class="col-md-6 d-flex justify-content-center align-items-center">
-       <div class="card-body">
-       <div class="card-group hours mx-auto">    
-  <div class="card list hours shift">
-    <div class="card-body">
-      <h4 class="card-title">🕔 Hours</h4>
-      <p class="card-text">${formattedString(hours)}</p>
-      
-    </div>
-  </div>
-  <div class="card list hours">
-    <div class="card-body">
-      <h4 class="card-title">😁 🕔 Happy Hours</h4>
-      <p class="card-text">${formattedString(happy)}</p>
-     
-    </div>
-  </div>
-</div>
-<div class="moves">
-<table class="table misc">
-    <tbody>
-    <tr>
-      <th scope="row misc">Neighborhood</th>
-      <td class="card-text">${neighborhood}</td>
-    </tr>
-    <tr>
-      <th scope="row misc">Outdoor Seating</th>
-      <td>${outdoor}</td>
-    </tr>
-    <tr>
-      <th scope="row misc">Food Served</th>
-      <td colspan="2">${formattedString(food)}</td>
-    </tr>
-     <tr>
-      <th scope="row misc">Merchandise</th>
-      <td colspan="2">${formattedString(merchandise)}</td>
-    </tr>
-    <tr>
-      <th scope="row misc">Links</th>
-      <td colspan="2"><a href="${website}" target="_blank"><button type="button" class="btn btn-primary btn-sm go">Website</button></a> <a href="${yelp}" target="_blank"><button type="button" class="btn btn-primary btn-sm go">Yelp</button></a></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
+
       `;
 
       jobsResultElement.innerHTML = newHtml;
@@ -174,6 +117,6 @@ if (idParams.length >= 2) {
   getOneRecord(idParams[1]); // create detail view HTML w/ our id
 } else {
   // Call listener function to hide search bar for mobile devices
-//   myNeighborhood(x);
+  //   myNeighborhood(x);
   getAllRecords(); // no id given, fetch summaries
 }
