@@ -26,7 +26,7 @@ async function getAllRecords() {
       for (let i = 0; i < data.records.length; i++) {
         let image = data.records[i].fields["Image"]; // here we are getting column values
         let name = data.records[i].fields["Name"]; //here we are using the Field ID to fecth the name property
-        let city = data.records[i].fields["City"];
+        let description = data.records[i].fields["Description"];
 
         newHtml += `
         
@@ -42,7 +42,7 @@ async function getAllRecords() {
     <p class="card-titulo">${name}</p>
   </div>
 </div>
-          <p hidden class="card-key">${city}</p>
+          <p hidden class="card-key">${description}</p>
           </div>
        
     
@@ -78,7 +78,7 @@ async function getOneRecord(id) {
       let address = data.fields["Address"];
       let site = data.fields["Site"];
       let reviews = data.fields["Reviews"];
-      let city = data.fields["City"];
+      let description = data.fields["Description"];
 
       let newHtml = `
        <div class="card mb-3 attraction-card">
@@ -96,6 +96,7 @@ async function getOneRecord(id) {
         <a href="${address}" target="_blank" class="btn btn-primary">Address</a>
         <a href="${site}" target="_blank" class="btn btn-primary">Main Site</a>
         <a href="${reviews}" target="_blank" class="btn btn-primary">Reviews</a>
+        <p class="card-text">${description}</p>
       </div>
     </div>
   </div>
